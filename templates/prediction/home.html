@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>titanic survival prediction</title>
+</head>
+<body>
+
+<h1>titanic survival prediction</h1>
+<p>enter passenger details to predict survival</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <label>passenger class:</label>
+    <select name="pclass" required>
+        <option value="1">first class</option>
+        <option value="2">second class</option>
+        <option value="3">third class</option>
+
+    </select>
+
+    <br><br>
+
+    <label>Gender:</label>
+    <select name="sex" required>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+
+    </select>
+
+    <br><br>
+    <lable>Age:</lable>
+    <input type="number" name="age" min="0" max="100" step="any" required>
+    <br><br>
+
+    <label>siblings /spouses abroad:</label>
+    <input type="number" name="sibsp" min="0" required>
+
+    <br><br>
+
+    <label>parents /children abroad:</label>
+
+    <input type="number" name="parch" min="0" value="=0" required>
+
+    <br><br>
+
+    <label>ticket fare:</label>
+    <input type="number" name="fare" min="0" step="any" required>
+
+    <br><br>
+
+    <button type="submit">predict survival</button>
+</form>
+
+{% if result %}
+    <h2>prediction result</h2>
+    <p>{{ result }}</p>
+{% endif %}
+</body>
+</html>
+
+
+
